@@ -2,6 +2,7 @@
 unalias gc
 alias gci="git commit -v"
 alias gcif="git commit -v --fixup"
+alias gpf="git push --force-with-lease"
 compdef _git gci=git-commit
 
 # Performs a merge from a branch into another, making sure local checkout is up-to-date in both branches
