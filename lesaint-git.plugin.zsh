@@ -16,3 +16,20 @@ function gitMergeAfterPull() {
   gup
   g merge $1
 }
+
+
+# Get the repo's main branch (can be prod, master, main)
+# (source: Lout's page
+ggm() {
+  git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+  # I used to use this one, but the alias above is faster!
+  # git remote show origin | awk '/HEAD branch/ {print $NF}'
+}
+
+grefresh() {
+  local main_branch="$(ggm)"
+  local current_branch="$(g rev-parse --abbrev-ref HEAD)"
+
+  g co "${main_branch}" && g pull && g co "${current_branch}" && g rebase "${main_branch}"
+}
+
