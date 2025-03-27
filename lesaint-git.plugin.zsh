@@ -30,6 +30,6 @@ grefresh() {
   local main_branch="$(ggm)"
   local current_branch="$(g rev-parse --abbrev-ref HEAD)"
 
-  g co "${main_branch}" && g pull && g co "${current_branch}" && g rebase "${main_branch}"
+  g co "${main_branch}" && g pull && g co "${current_branch}" && g rebase "${main_branch}" "$@"
 }
 
